@@ -97,7 +97,7 @@ describe('CheckoutComponent', () => {
     expect(submitBtn.disabled).toBeTrue();
   });
 
-  it('should navigate to /order-confirmation on valid submit', () => {
+  it('should navigate to /order-confirmation on valid submit and clear cart after navigation', async () => {
     cartService.addToCart(mockBook);
     fixture.detectChanges();
 
@@ -108,10 +108,16 @@ describe('CheckoutComponent', () => {
       cvv: '123'
     });
 
-    spyOn(router, 'navigate');
+    spyOn(router, 'navigate').and.returnValue(Promise.resolve(true));
     spyOn(cartService, 'clearCart');
+    spyOn(cartService, 'getCartItemsSnapshot').and.callThrough();
     component.onSubmit();
 
+    expect(cartService.getCartItemsSnapshot).toHaveBeenCalled();
     expect(router.navigate).toHaveBeenCalledWith(['/order-confirmation']);
+
+    // clearCart should be called after navigation promise resolves
+    await fixture.whenStable();
+    expect(cartService.clearCart).toHaveBeenCalled();
   });
 });

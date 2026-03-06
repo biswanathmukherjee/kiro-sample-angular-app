@@ -14,6 +14,10 @@ export class CartService {
     return this.cartItems.asObservable();
   }
 
+  getCartItemsSnapshot(): CartItem[] {
+    return this.cartItems.getValue();
+  }
+
   addToCart(book: Book): void {
     const items = this.cartItems.getValue();
     const existingItem = items.find(item => item.book.id === book.id);

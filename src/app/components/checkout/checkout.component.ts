@@ -270,13 +270,12 @@ export class CheckoutComponent {
     if (this.checkoutForm.valid) {
       const { cardholderName, cardNumber } = this.checkoutForm.value;
       const cardLastFour = cardNumber.slice(-4);
-
-      this.cartService.getCartItems().subscribe(cartItems => {
-        const total = cartItems.reduce((sum, item) => sum + item.book.price * item.quantity, 0);
-        this.orderService.placeOrder(cartItems, total, cardholderName, cardLastFour);
+      const cartItems = this.cartService.getCartItemsSnapshot();
+      const total = cartItems.reduce((sum, item) => sum + item.book.price * item.quantity, 0);
+      this.orderService.placeOrder(cartItems, total, cardholderName, cardLastFour);
+      this.router.navigate(['/order-confirmation']).then(() => {
         this.cartService.clearCart();
-        this.router.navigate(['/order-confirmation']);
-      }).unsubscribe();
+      });
     }
   }
 }

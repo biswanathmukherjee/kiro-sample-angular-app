@@ -129,4 +129,16 @@ describe('CartService', () => {
       done();
     });
   });
+
+  it('should return a synchronous snapshot of cart items', () => {
+    expect(service.getCartItemsSnapshot().length).toBe(0);
+
+    service.addToCart(mockBook);
+    service.addToCart(mockBook2);
+
+    const snapshot = service.getCartItemsSnapshot();
+    expect(snapshot.length).toBe(2);
+    expect(snapshot[0].book.id).toBe(mockBook.id);
+    expect(snapshot[1].book.id).toBe(mockBook2.id);
+  });
 });
