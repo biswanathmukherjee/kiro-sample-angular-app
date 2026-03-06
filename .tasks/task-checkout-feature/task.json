@@ -1,0 +1,7 @@
+{
+  "task_id": "task-checkout-feature",
+  "task_description": "Add checkout functionality with dummy credit card form and order confirmation page to the Angular bookstore app",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}

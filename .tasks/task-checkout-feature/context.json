@@ -1,0 +1,27 @@
+{
+  "project_type": "Angular 19 bookstore SPA with standalone components",
+  "language": "TypeScript",
+  "build_system": "Angular CLI (ng) via npm scripts",
+  "test_framework": "Karma + Jasmine. Tests use TestBed.configureTestingModule with standalone component imports. Tests live next to their source files as *.spec.ts",
+  "build_command": "cd /projects/sandbox/kiro-sample-angular-app && npx ng build",
+  "test_command": "cd /projects/sandbox/kiro-sample-angular-app && CHROME_BIN=/root/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome npx ng test --watch=false --browsers=ChromeHeadlessNoSandbox",
+  "verification_instructions": "1. Run npx ng build to verify production build succeeds. 2. Run test command above to verify all tests pass.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "npm install in project root. Chrome dependencies already installed via dnf (nss nspr atk cups-libs libdrm mesa-libgbm libXcomposite libXdamage libXrandr libxkbcommon pango alsa-lib at-spi2-atk). Puppeteer Chrome at /root/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome.",
+  "environment_constraints": "OPEN_INTERNET network. Node v22. Chrome available at /root/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome. Must set CHROME_BIN env var when running tests.",
+  "contribution_requirements": "No CONTRIBUTING.md. Follow existing patterns: standalone components with inline templates and inline styles, services with BehaviorSubject/Observable pattern, CSS custom properties for theming.",
+  "key_patterns": "All components are standalone (standalone: true). Templates and styles are inline in @Component decorator. Components use CommonModule, RouterLink, AsyncPipe as needed. Services are providedIn: 'root'. Observable data flows via async pipe in templates. Angular 19 @if/@for control flow syntax (not *ngIf/*ngFor). App uses @angular/forms (already in package.json dependencies). Tests use real services (not mocked) injected via TestBed. Routes in app.routes.ts with lazy-free imports. Cart has clearCart() method already implemented.",
+  "relevant_files": [
+    "src/app/app.routes.ts",
+    "src/app/components/cart/cart.component.ts",
+    "src/app/components/cart/cart.component.spec.ts",
+    "src/app/services/cart.service.ts",
+    "src/app/services/cart.service.spec.ts",
+    "src/app/models/cart-item.model.ts",
+    "src/app/models/book.model.ts",
+    "src/app/components/header/header.component.ts",
+    "src/app/components/book-detail/book-detail.component.ts",
+    "src/styles.css"
+  ],
+  "directory_structure": "src/app/components/ - feature components (book-detail, book-list, cart, header). src/app/services/ - book.service.ts and cart.service.ts. src/app/models/ - book.model.ts and cart-item.model.ts. Each component is a single .ts file with inline template and styles, plus a .spec.ts test file."
+}

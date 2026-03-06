@@ -1,0 +1,21 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Add unit tests for the order service, checkout component, and order confirmation component.",
+  "status": "in_progress",
+  "steps": [
+    "Create src/app/services/order.service.spec.ts following cart.service.spec.ts pattern. Test: service creation, placeOrder creates and stores order, getLastOrder returns null initially, getLastOrder returns placed order, clearOrder resets to null.",
+    "Create src/app/components/checkout/checkout.component.spec.ts following cart.component.spec.ts pattern. Test: component creation, form invalid when empty, card number validation, CVV validation, expiry date validation, submit button disabled when invalid, successful submission navigates to /order-confirmation.",
+    "Create src/app/components/order-confirmation/order-confirmation.component.spec.ts. Test: component creation, displays order details when order exists, shows continue shopping link."
+  ],
+  "acceptance_criteria": [
+    "All existing 39 tests still pass",
+    "New tests are meaningful and exercise actual component/service logic",
+    "CHROME_BIN=/root/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome npx ng test --watch=false --browsers=ChromeHeadlessNoSandbox passes all tests"
+  ],
+  "verification": [
+    "cd /projects/sandbox/kiro-sample-angular-app && CHROME_BIN=/root/.cache/puppeteer/chrome/linux-146.0.7680.31/chrome-linux64/chrome npx ng test --watch=false --browsers=ChromeHeadlessNoSandbox"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
