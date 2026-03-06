@@ -1,0 +1,43 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Build the complete Angular Bookstore application with all components, services, models, routing, and styling. This includes: a Book model/interface, a BookService with mock data, a book list page, a book detail page, a shopping cart service and cart page, a navigation header, and full routing between views.",
+  "status": "pending",
+  "steps": [
+    "Create the Book model interface at src/app/models/book.model.ts with fields: id (number), title (string), author (string), description (string), price (number), coverImage (string), isbn (string), publishedDate (string), category (string), rating (number), stock (number).",
+    "Create the BookService at src/app/services/book.service.ts as a standalone injectable service. Include a mock dataset of at least 8-10 books across different categories (Fiction, Science, Technology, History, etc.) with realistic data. Provide methods: getBooks(): Observable<Book[]>, getBookById(id: number): Observable<Book | undefined>, getBooksByCategory(category: string): Observable<Book[]>, searchBooks(query: string): Observable<Book[]>, getCategories(): Observable<string[]>.",
+    "Create the CartItem interface in src/app/models/cart-item.model.ts with fields: book (Book), quantity (number). Create the CartService at src/app/services/cart.service.ts with a BehaviorSubject-based reactive cart. Methods: getCartItems(): Observable<CartItem[]>, addToCart(book: Book): void, removeFromCart(bookId: number): void, updateQuantity(bookId: number, quantity: number): void, getCartTotal(): Observable<number>, getCartItemCount(): Observable<number>, clearCart(): void.",
+    "Create the HeaderComponent at src/app/components/header/header.component.ts as a standalone component. It should display the app name 'Angular Bookstore', a navigation link to the book list, and a cart icon/link showing the current cart item count (using CartService.getCartItemCount() with async pipe). Style it as a fixed top navigation bar.",
+    "Create the BookListComponent at src/app/components/book-list/book-list.component.ts as a standalone component. It should: display all books in a responsive grid of book cards, include a search input that filters books by title/author, include category filter buttons/chips, show each book's cover image (use placeholder colored divs with book initials since we have no real images), title, author, price, and rating. Each card should have an 'Add to Cart' button and a 'View Details' link (routerLink).",
+    "Create the BookDetailComponent at src/app/components/book-detail/book-detail.component.ts as a standalone component. It should: read the book ID from the route params (ActivatedRoute), fetch the book from BookService, display full book details (title, author, description, price, ISBN, published date, category, rating, stock status), include an 'Add to Cart' button, and a 'Back to Books' navigation link.",
+    "Create the CartComponent at src/app/components/cart/cart.component.ts as a standalone component. It should: display all cart items with book title, price, quantity controls (increment/decrement buttons and input), remove button per item, show subtotal per item, show total at the bottom, include a 'Clear Cart' button and a 'Continue Shopping' link back to the book list. Show an empty cart message when there are no items.",
+    "Update src/app/app.routes.ts with routes: '' (redirect to /books), 'books' (BookListComponent), 'books/:id' (BookDetailComponent), 'cart' (CartComponent), '**' (redirect to /books).",
+    "Update src/app/app.component.ts to include the HeaderComponent and router-outlet. Import RouterOutlet and HeaderComponent.",
+    "Add comprehensive CSS styling to each component for a clean, modern bookstore look. Use a consistent color scheme (e.g., a warm palette with a primary color for headers/buttons). Make the layout responsive with CSS Grid/Flexbox. Style the book cards with subtle shadows and hover effects. Style the cart with a table-like layout. Add the global styles in src/styles.css (CSS reset, font imports using system fonts, CSS custom properties for the color theme).",
+    "Write unit tests for BookService in src/app/services/book.service.spec.ts: test getBooks returns all books, getBookById returns correct book, getBookById returns undefined for invalid id, searchBooks filters correctly, getCategories returns unique categories.",
+    "Write unit tests for CartService in src/app/services/cart.service.spec.ts: test addToCart adds an item, addToCart increments quantity for duplicate, removeFromCart removes item, updateQuantity changes quantity, getCartTotal calculates correctly, clearCart empties the cart, getCartItemCount returns correct count.",
+    "Write unit tests for BookListComponent in src/app/components/book-list/book-list.component.spec.ts: test component creates, test it displays books, test search filtering works.",
+    "Write unit tests for BookDetailComponent in src/app/components/book-detail/book-detail.component.spec.ts: test component creates, test it displays book details when given a valid ID.",
+    "Write unit tests for CartComponent in src/app/components/cart/cart.component.spec.ts: test component creates, test it displays cart items, test empty cart message.",
+    "Write unit tests for HeaderComponent in src/app/components/header/header.component.spec.ts: test component creates, test it displays app title.",
+    "Ensure all existing and new tests pass by running 'npx ng test --watch=false --browsers=ChromeHeadless'. Fix any test failures.",
+    "Run 'npx ng build' to verify the production build succeeds with all new code."
+  ],
+  "acceptance_criteria": [
+    "The application has a working navigation header with app name and cart item count badge",
+    "The book list page displays at least 8 books in a responsive grid with search and category filtering",
+    "Clicking a book card navigates to the book detail page showing full information",
+    "Users can add books to cart from both the list and detail pages",
+    "The cart page displays items with quantity controls, per-item subtotals, and a grand total",
+    "All routes work correctly: /books, /books/:id, /cart, with proper redirects",
+    "'npx ng build' completes successfully",
+    "'npx ng test --watch=false --browsers=ChromeHeadless' passes all tests including new ones",
+    "The application has a clean, modern visual design with responsive layout"
+  ],
+  "verification": [
+    "cd /projects/sandbox/kiro-sample-angular-app && npx ng build",
+    "cd /projects/sandbox/kiro-sample-angular-app && npx ng test --watch=false --browsers=ChromeHeadless"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}

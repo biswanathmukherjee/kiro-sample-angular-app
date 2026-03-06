@@ -1,0 +1,23 @@
+{
+  "project_type": "Angular 19 Single Page Application - Bookstore",
+  "language": "TypeScript",
+  "build_system": "Angular CLI 19 with npm",
+  "test_framework": "Karma + Jasmine (Angular default)",
+  "build_command": "cd /projects/sandbox/kiro-sample-angular-app && npx ng build",
+  "test_command": "cd /projects/sandbox/kiro-sample-angular-app && npx ng test --watch=false --browsers=ChromeHeadless",
+  "verification_instructions": "1. Run 'npx ng build' to verify the production build succeeds. 2. Run 'npx ng test --watch=false --browsers=ChromeHeadless' to run unit tests. 3. Optionally run 'npx ng serve' to verify the dev server starts.",
+  "snapshot_or_generated_files": null,
+  "setup_instructions": "1. cd /projects/sandbox/kiro-sample-angular-app. 2. Use Node.js v22 (default). 3. Run 'npx @angular/cli@19 new kiro-sample-angular-app --directory . --skip-git --style=css --routing --ssr=false' to scaffold the project. 4. Run 'npm install' if needed.",
+  "environment_constraints": "OPEN_INTERNET mode - full npm access. Node.js v22 default. No Docker needed. ChromeHeadless may need to be installed for Karma tests.",
+  "contribution_requirements": "Greenfield project - no existing contribution guidelines.",
+  "key_patterns": "Angular 19 standalone components (default), TypeScript strict mode, Angular Router for navigation, Angular services for data management, RxJS for reactive patterns.",
+  "relevant_files": [
+    "src/app/app.component.ts",
+    "src/app/app.routes.ts",
+    "src/app/app.config.ts",
+    "angular.json",
+    "package.json",
+    "tsconfig.json"
+  ],
+  "directory_structure": "Standard Angular CLI project structure: src/app/ for components and services, src/assets/ for static assets, src/environments/ for env config, public/ for static files."
+}

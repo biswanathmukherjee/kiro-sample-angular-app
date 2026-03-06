@@ -1,0 +1,27 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Scaffold the Angular 19 project in the existing repository directory using Angular CLI. This sets up the foundational project structure including routing, standalone components, and all configuration files.",
+  "status": "in_progress",
+  "steps": [
+    "Run 'npx @angular/cli@19 new kiro-sample-angular-app --directory . --skip-git --style=css --routing --ssr=false' inside /projects/sandbox/kiro-sample-angular-app to scaffold the Angular project without overwriting the .git directory.",
+    "Verify the scaffold succeeded by checking that angular.json, package.json, tsconfig.json, and src/app/app.component.ts exist.",
+    "Run 'npm install' to ensure all dependencies are installed.",
+    "Run 'npx ng build' to verify the production build succeeds.",
+    "Install chromium for headless testing: run 'npx puppeteer browsers install chrome' or configure Karma to use ChromeHeadless. Update karma.conf.js if needed to add ChromeHeadless as a browser and set CHROME_BIN environment variable.",
+    "Run 'npx ng test --watch=false --browsers=ChromeHeadless' to verify tests pass. If Karma tests fail due to missing Chrome, adjust the approach: either install chromium via the system package manager or switch to a headless-compatible setup.",
+    "Update the README.md to describe the Angular Bookstore application with setup instructions, features overview, and how to run the app."
+  ],
+  "acceptance_criteria": [
+    "'npx ng build' completes successfully with no errors",
+    "'npx ng test --watch=false --browsers=ChromeHeadless' passes (or tests are confirmed working with an alternative headless browser setup)",
+    "The project structure follows Angular 19 conventions with standalone components",
+    "README.md is updated with project description and instructions"
+  ],
+  "verification": [
+    "cd /projects/sandbox/kiro-sample-angular-app && npx ng build",
+    "cd /projects/sandbox/kiro-sample-angular-app && npx ng test --watch=false --browsers=ChromeHeadless"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
