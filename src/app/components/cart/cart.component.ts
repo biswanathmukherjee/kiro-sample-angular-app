@@ -42,6 +42,7 @@ import { CartService } from '../../services/cart.service';
           </div>
           <div class="cart-actions">
             <a routerLink="/books" class="continue-btn">Continue Shopping</a>
+            <a routerLink="/checkout" class="checkout-btn">Proceed to Checkout</a>
             <button class="clear-btn" (click)="clearCart()">Clear Cart</button>
           </div>
         </div>
@@ -230,6 +231,21 @@ import { CartService } from '../../services/cart.service';
     .clear-btn:hover {
       background: #e74c3c;
       color: #fff;
+    }
+
+    .checkout-btn {
+      padding: 0.7rem 1.5rem;
+      background: #27ae60;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: background 0.2s;
+    }
+
+    .checkout-btn:hover {
+      background: #219a52;
     }
 
     .empty-cart {
