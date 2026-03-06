@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Build the complete Angular Bookstore application with all components, services, models, routing, and styling. This includes: a Book model/interface, a BookService with mock data, a book list page, a book detail page, a shopping cart service and cart page, a navigation header, and full routing between views.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Create the Book model interface at src/app/models/book.model.ts with fields: id (number), title (string), author (string), description (string), price (number), coverImage (string), isbn (string), publishedDate (string), category (string), rating (number), stock (number).",
     "Create the BookService at src/app/services/book.service.ts as a standalone injectable service. Include a mock dataset of at least 8-10 books across different categories (Fiction, Science, Technology, History, etc.) with realistic data. Provide methods: getBooks(): Observable<Book[]>, getBookById(id: number): Observable<Book | undefined>, getBooksByCategory(category: string): Observable<Book[]>, searchBooks(query: string): Observable<Book[]>, getCategories(): Observable<string[]>.",
