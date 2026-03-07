@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
 import { useOrder } from '../contexts/OrderContext';
-import './Checkout.css';
+import styles from './Checkout.module.css';
 
 function formatCurrency(value: number): string {
   return '$' + value.toFixed(2);
@@ -58,59 +58,59 @@ export default function Checkout() {
 
   if (cartItems.length === 0) {
     return (
-      <div className="checkout-container">
-        <h1 className="page-title">Checkout</h1>
-        <div className="empty-cart">
-          <p className="empty-message">Your cart is empty. Add some books before checking out.</p>
-          <Link to="/books" className="browse-btn">Browse Books</Link>
+      <div className={styles['checkout-container']}>
+        <h1 className={styles['page-title']}>Checkout</h1>
+        <div className={styles['empty-cart']}>
+          <p className={styles['empty-message']}>Your cart is empty. Add some books before checking out.</p>
+          <Link to="/books" className={styles['browse-btn']}>Browse Books</Link>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="checkout-container">
-      <h1 className="page-title">Checkout</h1>
-      <div className="checkout-content">
-        <div className="order-summary">
-          <h2 className="section-title">Order Summary</h2>
+    <div className={styles['checkout-container']}>
+      <h1 className={styles['page-title']}>Checkout</h1>
+      <div className={styles['checkout-content']}>
+        <div className={styles['order-summary']}>
+          <h2 className={styles['section-title']}>Order Summary</h2>
           {cartItems.map(item => (
-            <div key={item.book.id} className="summary-item">
-              <span className="summary-item-name">{item.book.title} x {item.quantity}</span>
-              <span className="summary-item-price">{formatCurrency(item.book.price * item.quantity)}</span>
+            <div key={item.book.id} className={styles['summary-item']}>
+              <span className={styles['summary-item-name']}>{item.book.title} x {item.quantity}</span>
+              <span className={styles['summary-item-price']}>{formatCurrency(item.book.price * item.quantity)}</span>
             </div>
           ))}
-          <div className="summary-total">
+          <div className={styles['summary-total']}>
             <span>Total:</span>
-            <span className="total-amount">{formatCurrency(getCartTotal())}</span>
+            <span className={styles['total-amount']}>{formatCurrency(getCartTotal())}</span>
           </div>
         </div>
-        <div className="payment-form">
-          <h2 className="section-title">Payment Details</h2>
+        <div className={styles['payment-form']}>
+          <h2 className={styles['section-title']}>Payment Details</h2>
           <form onSubmit={handleSubmit}>
-            <div className="form-group">
+            <div className={styles['form-group']}>
               <label htmlFor="cardholderName">Cardholder Name</label>
               <input id="cardholderName" type="text" value={formData.cardholderName} onChange={handleChange('cardholderName')} onBlur={handleBlur('cardholderName')} placeholder="John Doe" />
-              {!validations.cardholderName && touched.cardholderName && <span className="error">Cardholder name is required.</span>}
+              {!validations.cardholderName && touched.cardholderName && <span className={styles.error}>Cardholder name is required.</span>}
             </div>
-            <div className="form-group">
+            <div className={styles['form-group']}>
               <label htmlFor="cardNumber">Card Number</label>
               <input id="cardNumber" type="text" value={formData.cardNumber} onChange={handleChange('cardNumber')} onBlur={handleBlur('cardNumber')} placeholder="1234567890123456" />
-              {!validations.cardNumber && touched.cardNumber && <span className="error">Enter a valid 16-digit card number.</span>}
+              {!validations.cardNumber && touched.cardNumber && <span className={styles.error}>Enter a valid 16-digit card number.</span>}
             </div>
-            <div className="form-row">
-              <div className="form-group">
+            <div className={styles['form-row']}>
+              <div className={styles['form-group']}>
                 <label htmlFor="expiryDate">Expiry Date</label>
                 <input id="expiryDate" type="text" value={formData.expiryDate} onChange={handleChange('expiryDate')} onBlur={handleBlur('expiryDate')} placeholder="MM/YY" />
-                {!validations.expiryDate && touched.expiryDate && <span className="error">Enter a valid expiry date (MM/YY).</span>}
+                {!validations.expiryDate && touched.expiryDate && <span className={styles.error}>Enter a valid expiry date (MM/YY).</span>}
               </div>
-              <div className="form-group">
+              <div className={styles['form-group']}>
                 <label htmlFor="cvv">CVV</label>
                 <input id="cvv" type="text" value={formData.cvv} onChange={handleChange('cvv')} onBlur={handleBlur('cvv')} placeholder="123" />
-                {!validations.cvv && touched.cvv && <span className="error">Enter a valid CVV (3-4 digits).</span>}
+                {!validations.cvv && touched.cvv && <span className={styles.error}>Enter a valid CVV (3-4 digits).</span>}
               </div>
             </div>
-            <button type="submit" className="submit-btn" disabled={!isFormValid}>Place Order</button>
+            <button type="submit" className={styles['submit-btn']} disabled={!isFormValid}>Place Order</button>
           </form>
         </div>
       </div>

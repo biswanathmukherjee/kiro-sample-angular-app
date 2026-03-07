@@ -21,32 +21,32 @@ describe('BookList', () => {
   });
 
   it('should display book cards', () => {
-    const { container } = renderBookList();
-    const cards = container.querySelectorAll('.book-card');
-    expect(cards.length).toBeGreaterThanOrEqual(8);
+    renderBookList();
+    const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
+    expect(addButtons.length).toBeGreaterThanOrEqual(8);
   });
 
   it('should filter books by search query', () => {
-    const { container } = renderBookList();
+    renderBookList();
     const searchInput = screen.getByPlaceholderText('Search by title or author...');
     fireEvent.change(searchInput, { target: { value: 'gatsby' } });
-    const cards = container.querySelectorAll('.book-card');
-    expect(cards.length).toBe(1);
+    const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
+    expect(addButtons.length).toBe(1);
   });
 
   it('should filter books by category', () => {
-    const { container } = renderBookList();
+    renderBookList();
     const fictionBtn = screen.getByText('Fiction');
     fireEvent.click(fictionBtn);
-    const cards = container.querySelectorAll('.book-card');
-    expect(cards.length).toBeGreaterThanOrEqual(1);
+    const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
+    expect(addButtons.length).toBeGreaterThanOrEqual(1);
   });
 
   it('should show all books when category filter is cleared', () => {
-    const { container } = renderBookList();
+    renderBookList();
     fireEvent.click(screen.getByText('Fiction'));
     fireEvent.click(screen.getByText('All'));
-    const cards = container.querySelectorAll('.book-card');
-    expect(cards.length).toBeGreaterThanOrEqual(8);
+    const addButtons = screen.getAllByRole('button', { name: 'Add to Cart' });
+    expect(addButtons.length).toBeGreaterThanOrEqual(8);
   });
 });

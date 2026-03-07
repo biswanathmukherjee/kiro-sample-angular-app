@@ -57,7 +57,7 @@ function renderOrderConfirmationWithOrder() {
 describe('OrderConfirmation', () => {
   it('should create', () => {
     renderOrderConfirmation();
-    expect(document.querySelector('.confirmation-container')).toBeTruthy();
+    expect(screen.getByText('No order found.')).toBeTruthy();
   });
 
   it('should show no-order message when no order exists', () => {

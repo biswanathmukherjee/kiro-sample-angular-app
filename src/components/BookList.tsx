@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Book } from '../models/book.model';
 import { getBooks, getCategories } from '../services/bookService';
 import { useCart } from '../contexts/CartContext';
-import './BookList.css';
+import styles from './BookList.module.css';
 
 const bookColors = ['#e74c3c', '#3498db', '#2ecc71', '#9b59b6', '#e67e22', '#1abc9c', '#34495e', '#f1c40f'];
 
@@ -39,52 +39,52 @@ export default function BookList() {
   }, [books, searchQuery, selectedCategory]);
 
   return (
-    <div className="book-list-container">
-      <h1 className="page-title">Browse Books</h1>
-      <div className="filters">
+    <div className={styles['book-list-container']}>
+      <h1 className={styles['page-title']}>Browse Books</h1>
+      <div className={styles.filters}>
         <input
           type="text"
-          className="search-input"
+          className={styles['search-input']}
           placeholder="Search by title or author..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
-        <div className="category-chips">
+        <div className={styles['category-chips']}>
           <button
-            className={`chip ${selectedCategory === '' ? 'active' : ''}`}
+            className={`${styles.chip} ${selectedCategory === '' ? styles.active : ''}`}
             onClick={() => setSelectedCategory('')}
           >All</button>
           {categories.map(category => (
             <button
               key={category}
-              className={`chip ${selectedCategory === category ? 'active' : ''}`}
+              className={`${styles.chip} ${selectedCategory === category ? styles.active : ''}`}
               onClick={() => setSelectedCategory(category)}
             >{category}</button>
           ))}
         </div>
       </div>
-      <div className="book-grid">
+      <div className={styles['book-grid']}>
         {filteredBooks.map(book => (
-          <div key={book.id} className="book-card">
-            <Link to={`/books/${book.id}`} className="book-cover">
-              <div className="cover-placeholder" style={{ backgroundColor: getBookColor(book) }}>
-                <span className="cover-letter">{book.title.charAt(0)}</span>
+          <div key={book.id} className={styles['book-card']}>
+            <Link to={`/books/${book.id}`} className={styles['book-cover']}>
+              <div className={styles['cover-placeholder']} style={{ backgroundColor: getBookColor(book) }}>
+                <span className={styles['cover-letter']}>{book.title.charAt(0)}</span>
               </div>
             </Link>
-            <div className="book-info">
-              <Link to={`/books/${book.id}`} className="book-title">{book.title}</Link>
-              <p className="book-author">{book.author}</p>
-              <div className="book-meta">
-                <span className="book-price">{formatCurrency(book.price)}</span>
-                <span className="book-rating">{book.rating} &#9733;</span>
+            <div className={styles['book-info']}>
+              <Link to={`/books/${book.id}`} className={styles['book-title']}>{book.title}</Link>
+              <p className={styles['book-author']}>{book.author}</p>
+              <div className={styles['book-meta']}>
+                <span className={styles['book-price']}>{formatCurrency(book.price)}</span>
+                <span className={styles['book-rating']}>{book.rating} &#9733;</span>
               </div>
-              <button className="add-to-cart-btn" onClick={() => addToCart(book)}>Add to Cart</button>
+              <button className={styles['add-to-cart-btn']} onClick={() => addToCart(book)}>Add to Cart</button>
             </div>
           </div>
         ))}
       </div>
       {filteredBooks.length === 0 && (
-        <p className="no-results">No books found matching your criteria.</p>
+        <p className={styles['no-results']}>No books found matching your criteria.</p>
       )}
     </div>
   );

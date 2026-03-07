@@ -1,19 +1,19 @@
 import { Link } from 'react-router-dom';
 import { useCart } from '../contexts/CartContext';
-import './Header.css';
+import styles from './Header.module.css';
 
 export default function Header() {
   const { getCartItemCount } = useCart();
   const count = getCartItemCount();
 
   return (
-    <nav className="header">
-      <Link to="/books" className="logo">React Bookstore</Link>
-      <div className="nav-links">
-        <Link to="/books" className="nav-link">Books</Link>
-        <Link to="/cart" className="nav-link cart-link">
+    <nav className={styles.header}>
+      <Link to="/books" className={styles.logo}>React Bookstore</Link>
+      <div className={styles['nav-links']}>
+        <Link to="/books" className={styles['nav-link']}>Books</Link>
+        <Link to="/cart" className={`${styles['nav-link']} ${styles['cart-link']}`}>
           Cart
-          {count > 0 && <span className="cart-badge">{count}</span>}
+          {count > 0 && <span className={styles['cart-badge']}>{count}</span>}
         </Link>
       </div>
     </nav>
