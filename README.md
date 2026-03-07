@@ -1,6 +1,6 @@
-# Angular Bookstore
+# React Bookstore
 
-A sample bookstore application built with Angular 19. Browse books, search and filter by category, view book details, and manage a shopping cart.
+A sample bookstore application built with React 19 and Vite. Browse books, search and filter by category, view book details, manage a shopping cart, and complete checkout with order confirmation.
 
 ## Features
 
@@ -8,6 +8,8 @@ A sample bookstore application built with Angular 19. Browse books, search and f
 - **Search and Filter** - Search books by title or author and filter by category
 - **Book Details** - View detailed information about each book
 - **Shopping Cart** - Add books to your cart, adjust quantities, and view the total
+- **Checkout** - Complete your purchase with a checkout flow
+- **Order Confirmation** - View order confirmation after a successful checkout
 
 ## Prerequisites
 
@@ -25,27 +27,21 @@ npm install
 ### Run the development server
 
 ```bash
-npx ng serve
+npm run dev
 ```
 
-Navigate to `http://localhost:4200/`. The application will automatically reload when you change any source files.
+Navigate to `http://localhost:5173/`. The application will automatically reload when you change any source files.
 
 ### Run unit tests
 
 ```bash
-npx ng test
-```
-
-To run tests in headless mode (CI):
-
-```bash
-CHROME_BIN=/path/to/chrome npx ng test --watch=false --browsers=ChromeHeadlessNoSandbox
+npm test
 ```
 
 ### Build for production
 
 ```bash
-npx ng build
+npm run build
 ```
 
 Build artifacts are stored in the `dist/` directory.
@@ -54,20 +50,33 @@ Build artifacts are stored in the `dist/` directory.
 
 ```
 src/
-  app/
-    app.component.ts       - Root component
-    app.config.ts          - Application configuration
-    app.routes.ts          - Route definitions
-  index.html               - Main HTML page
-  main.ts                  - Application entry point
-  styles.css               - Global styles
+  components/
+    BookList.tsx             - Book catalog with search and filtering
+    BookDetail.tsx           - Detailed view for a single book
+    Cart.tsx                 - Shopping cart page
+    Checkout.tsx             - Checkout flow
+    Header.tsx               - App header with navigation
+    OrderConfirmation.tsx    - Order confirmation page
+  contexts/
+    CartContext.tsx           - Shopping cart state management
+    OrderContext.tsx          - Order state management
+  models/
+    book.model.ts            - Book type definition
+    cart-item.model.ts       - Cart item type definition
+    order.model.ts           - Order type definition
+  services/
+    bookService.ts           - Book data and retrieval logic
+  App.tsx                    - Root component with route definitions
+  main.tsx                   - Application entry point
+  styles.css                 - Global styles
 ```
 
 ## Technology Stack
 
-- **Framework**: Angular 19 with standalone components
+- **Framework**: React 19
+- **Build Tool**: Vite
 - **Language**: TypeScript
-- **Routing**: Angular Router
-- **State Management**: RxJS-based services
-- **Testing**: Karma + Jasmine
+- **Routing**: React Router v7
+- **State Management**: React Context
+- **Testing**: Vitest + React Testing Library
 - **Styling**: CSS

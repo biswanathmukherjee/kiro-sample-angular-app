@@ -1,0 +1,7 @@
+{
+  "task_id": "task-migrate-angular-to-react",
+  "task_description": "Migrate the Angular 19 bookstore application to React 19.x with Vite, TypeScript, React Router v7, Vitest, and React Testing Library. Preserve all functionality, UI, models, and test coverage.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002", "FEAT-003"],
+  "blocked_reason": null
+}

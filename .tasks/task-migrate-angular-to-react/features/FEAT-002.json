@@ -1,0 +1,37 @@
+{
+  "id": "FEAT-002",
+  "type": "feat",
+  "description": "Convert all Angular models, services, components, and routing to React equivalents. This is the core migration: preserve all TypeScript interfaces, convert Angular services (BookService, CartService, OrderService) to React Context providers with hooks, convert all 6 Angular components to React functional components, and set up React Router routes matching the original Angular routes.",
+  "status": "completed",
+  "steps": [
+    "Preserve model files as-is (they are plain TypeScript interfaces with no Angular dependency): src/app/models/book.model.ts, src/app/models/cart-item.model.ts, src/app/models/order.model.ts. Move them to src/models/ (remove app/ nesting).",
+    "Convert BookService (src/app/services/book.service.ts) to a plain TypeScript module src/services/bookService.ts. Remove @Injectable and Observable wrappers. Export the hardcoded books array and plain functions: getBooks(), getBookById(id), getBooksByCategory(category), searchBooks(query), getCategories(). These return plain data (not Observables).",
+    "Convert CartService (src/app/services/cart.service.ts) to a React Context + hook: create src/contexts/CartContext.tsx. Use React.createContext and a CartProvider component with useState to manage CartItem[]. Export a useCart() hook that provides: cartItems, addToCart(book), removeFromCart(bookId), updateQuantity(bookId, quantity), getCartTotal(), getCartItemCount(), clearCart(), getCartItemsSnapshot().",
+    "Convert OrderService (src/app/services/order.service.ts) to a React Context + hook: create src/contexts/OrderContext.tsx. Use React.createContext and an OrderProvider component with useState to manage Order|null. Export a useOrder() hook that provides: lastOrder, placeOrder(items, total, cardholderName, cardLastFour), clearOrder(). The placeOrder method should generate the order ID the same way (ORD- + random string).",
+    "Convert HeaderComponent to src/components/Header.tsx. Use Link from react-router-dom instead of routerLink. Use useCart() hook to get cart item count. Preserve all CSS classes and styling (use inline styles object or a separate Header.css file imported into the component). The logo text should remain 'Angular Bookstore' as in the original.",
+    "Convert BookListComponent to src/components/BookList.tsx. Use useState for searchQuery, selectedCategory, filteredBooks. Use useEffect to load books from bookService on mount. Use useCart() for addToCart. Use Link from react-router-dom. Preserve the search input, category chips filter, book grid with cards, and 'No books found' message. Format prices using Intl.NumberFormat or toFixed(2) with $ prefix to match Angular's currency pipe. Preserve the getBookColor logic.",
+    "Convert BookDetailComponent to src/components/BookDetail.tsx. Use useParams from react-router-dom to get the book id. Use bookService.getBookById(). Use useCart() for addToCart. Show book details with cover placeholder, stock badge, ISBN/Published/Category grid, and Add to Cart button. Show 'Book not found' if id is invalid. Use Link for 'Back to Books'. Format price with $ like currency pipe.",
+    "Convert CartComponent to src/components/Cart.tsx. Use useCart() hook. Show cart items with quantity controls (+/- buttons), subtotals, remove buttons. Show total, Continue Shopping link, Proceed to Checkout link, Clear Cart button. Show 'Your cart is empty' with Browse Books link when empty. Format prices with $.",
+    "Convert CheckoutComponent to src/components/Checkout.tsx. Use useCart() and useOrder() hooks. Use useNavigate() from react-router-dom. Implement form with useState for each field (cardholderName, cardNumber, expiryDate, cvv) and validation state. Validate: cardholderName required, cardNumber 16 digits, expiryDate MM/YY format, cvv 3-4 digits. Show order summary with items and total. Submit button disabled when form invalid. On submit: place order, navigate to /order-confirmation, then clear cart. Show empty cart message when cart is empty.",
+    "Convert OrderConfirmationComponent to src/components/OrderConfirmation.tsx. Use useOrder() hook. Show order details (id, date, cardholder, card last four, items, total) when order exists. Show 'No order found' with Browse Books link when no order. Format date using toLocaleDateString or similar. Format prices with $. Use Link for Continue Shopping.",
+    "Update src/App.tsx to be the root component: import and wrap with CartProvider and OrderProvider. Render Header component. Render Routes with the same route structure as Angular: / redirects to /books, /books shows BookList, /books/:id shows BookDetail, /cart shows Cart, /checkout shows Checkout, /order-confirmation shows OrderConfirmation, catch-all * redirects to /books.",
+    "Remove all old Angular source files from src/app/ directory after migration is complete.",
+    "Run npm run build to confirm the complete React app compiles."
+  ],
+  "acceptance_criteria": [
+    "All 3 model interfaces (Book, CartItem, Order) exist in src/models/ with identical type definitions",
+    "BookService is converted to src/services/bookService.ts with the same 10 hardcoded books and same query/filter logic",
+    "CartContext provides addToCart, removeFromCart, updateQuantity, clearCart, getCartTotal, getCartItemCount with the same behavior as Angular CartService",
+    "OrderContext provides placeOrder, getLastOrder equivalent, clearOrder with the same behavior as Angular OrderService",
+    "All 6 components (Header, BookList, BookDetail, Cart, Checkout, OrderConfirmation) are React functional components preserving the same HTML structure and CSS classes",
+    "React Router routes match the Angular routes: /books, /books/:id, /cart, /checkout, /order-confirmation, / -> /books redirect, ** -> /books",
+    "Checkout form has the same validation rules: cardholderName required, cardNumber 16 digits, expiryDate MM/YY, cvv 3-4 digits",
+    "npm run build succeeds without errors",
+    "No Angular source files remain in src/app/"
+  ],
+  "verification": [
+    "Run npm run build and confirm exit code 0"
+  ],
+  "blocked_reason": null,
+  "findings": "FEAT-002 complete. All 6 React components created, App.tsx wired with routing (CartProvider, OrderProvider, Routes), App.css created, old Angular src/app/ directory removed (29 files deleted). tsconfig.json exclude and vite.config.ts test.exclude cleaned up. npm run build succeeds (57 modules, 0 errors). No Angular source files remain."
+}

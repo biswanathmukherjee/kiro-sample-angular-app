@@ -1,0 +1,32 @@
+{
+  "id": "FEAT-003",
+  "type": "feat",
+  "description": "Port all Jasmine/Karma tests to Vitest + React Testing Library. Convert every spec file from Angular TestBed patterns to React Testing Library render/screen/userEvent patterns. Preserve the same test coverage and assertions.",
+  "status": "completed",
+  "steps": [
+    "Create src/services/bookService.test.ts: Port all 8 tests from book.service.spec.ts. Test getBooks() returns 10+ books, getBookById(1) returns correct book, getBookById(9999) returns undefined, searchBooks('gatsby') matches, searchBooks('hawking') matches, searchBooks('xyznonexistent') returns empty, getBooksByCategory('Fiction') filters correctly, getCategories() returns sorted unique categories. These are now synchronous functions (no Observable subscribe).",
+    "Create src/contexts/CartContext.test.tsx: Port all 10 tests from cart.service.spec.ts. Create a test wrapper component that uses useCart() hook. Test: starts with empty cart, addToCart adds item, addToCart same book increments quantity, removeFromCart removes item, updateQuantity changes quantity, updateQuantity(bookId, 0) removes item, getCartTotal calculates correctly, getCartItemCount returns correct count, clearCart empties cart, getCartItemsSnapshot returns synchronous snapshot. Use renderHook from @testing-library/react with CartProvider wrapper.",
+    "Create src/contexts/OrderContext.test.tsx: Port all 4 tests from order.service.spec.ts. Test: starts with null lastOrder, placeOrder creates order with correct fields and ORD- prefix ID, lastOrder is updated after placeOrder, clearOrder resets to null. Use renderHook from @testing-library/react with OrderProvider wrapper.",
+    "Create src/components/Header.test.tsx: Port 3 tests from header.component.spec.ts. Render Header within MemoryRouter and CartProvider. Test: renders component, displays 'Angular Bookstore' logo text, has navigation links (Books and Cart).",
+    "Create src/components/BookList.test.tsx: Port 5 tests from book-list.component.spec.ts. Render BookList within MemoryRouter and CartProvider. Test: renders component, displays book cards (at least 8), filters by search query 'gatsby' shows 1 result, filters by category 'Fiction', shows all books when category filter is cleared.",
+    "Create src/components/BookDetail.test.tsx: Port 4 tests from book-detail.component.spec.ts. Render BookDetail with MemoryRouter route param id=1, CartProvider. Test: renders component, loads and displays book details for id 1, displays 'Back to Books' link, shows 'Add to Cart' button.",
+    "Create src/components/Cart.test.tsx: Port 4 tests from cart.component.spec.ts. Render Cart within MemoryRouter and CartProvider. Test: renders component, shows 'Your cart is empty' when empty, displays cart items when items added (use CartContext to add a book before rendering), shows 'Browse Books' link when empty.",
+    "Create src/components/Checkout.test.tsx: Port 8 tests from checkout.component.spec.ts. Render Checkout within MemoryRouter, CartProvider, OrderProvider. Test: renders component, shows empty cart message when empty, displays order summary when cart has items, form starts invalid, cardNumber validates 16 digits, cvv validates 3-4 digits, expiryDate validates MM/YY, submit button disabled when form invalid. For the navigation test on valid submit: fill all form fields, submit, verify navigation to /order-confirmation.",
+    "Create src/components/OrderConfirmation.test.tsx: Port 4 tests from order-confirmation.component.spec.ts. Render within MemoryRouter and OrderProvider. Test: renders component, shows 'No order found' when no order, displays order details when order exists (use OrderContext to place an order before rendering), shows 'Continue Shopping' link.",
+    "Create src/components/App.test.tsx: Port 4 tests from app.component.spec.ts. Render App within MemoryRouter. Test: renders app, renders header component (check for logo text), renders content area (main-content class), has correct title concept.",
+    "Run npm test and confirm all tests pass."
+  ],
+  "acceptance_criteria": [
+    "All test files created: bookService.test.ts, CartContext.test.tsx, OrderContext.test.tsx, Header.test.tsx, BookList.test.tsx, BookDetail.test.tsx, Cart.test.tsx, Checkout.test.tsx, OrderConfirmation.test.tsx, App.test.tsx",
+    "Total test count is at least as many as the original Angular tests (approximately 45+ tests)",
+    "npm test passes with all tests green",
+    "Tests exercise real component rendering and context state (not just mocking everything away)",
+    "Service/context tests verify the same business logic as original specs"
+  ],
+  "verification": [
+    "Run npm test and confirm all tests pass with exit code 0",
+    "Run npm run build to confirm the app still builds after adding test files"
+  ],
+  "blocked_reason": null,
+  "findings": "All tests complete. Part 1: bookService.test.ts (8 tests), CartContext.test.tsx (10 tests), OrderContext.test.tsx (4 tests). Part 2: Header.test.tsx (3 tests), BookList.test.tsx (5 tests), BookDetail.test.tsx (4 tests), Cart.test.tsx (4 tests), Checkout.test.tsx (8 tests), OrderConfirmation.test.tsx (4 tests), App.test.tsx (4 tests). Total: 54 tests across 10 test files, all passing. npm run build also succeeds."
+}
