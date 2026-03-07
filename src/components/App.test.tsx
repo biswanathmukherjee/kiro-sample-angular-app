@@ -14,7 +14,7 @@ function renderApp() {
 describe('App', () => {
   it('should create the app', () => {
     renderApp();
-    expect(screen.getByText('Angular Bookstore')).toBeTruthy();
+    expect(screen.getByText('React Bookstore')).toBeTruthy();
   });
 
   it('should render the header component', () => {

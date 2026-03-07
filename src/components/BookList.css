@@ -71,6 +71,8 @@
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-card:hover {
@@ -98,6 +100,9 @@
 
 .book-info {
   padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
 }
 
 .book-title {
@@ -151,6 +156,7 @@
   font-weight: 600;
   cursor: pointer;
   transition: background 0.2s;
+  margin-top: auto;
 }
 
 .add-to-cart-btn:hover {

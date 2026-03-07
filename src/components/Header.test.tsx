@@ -20,9 +20,9 @@ describe('Header', () => {
     expect(screen.getByRole('navigation')).toBeTruthy();
   });
 
-  it('should display Angular Bookstore text', () => {
+  it('should display React Bookstore text', () => {
     renderHeader();
-    expect(screen.getByText('Angular Bookstore')).toBeTruthy();
+    expect(screen.getByText('React Bookstore')).toBeTruthy();
   });
 
   it('should have navigation links', () => {

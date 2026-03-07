@@ -8,7 +8,7 @@ export default function Header() {
 
   return (
     <nav className="header">
-      <Link to="/books" className="logo">Angular Bookstore</Link>
+      <Link to="/books" className="logo">React Bookstore</Link>
       <div className="nav-links">
         <Link to="/books" className="nav-link">Books</Link>
         <Link to="/cart" className="nav-link cart-link">
