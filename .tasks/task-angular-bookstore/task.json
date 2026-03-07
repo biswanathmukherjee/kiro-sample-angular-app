@@ -1,0 +1,7 @@
+{
+  "task_id": "task-angular-bookstore",
+  "task_description": "Create a sample Angular 19 bookstore application from scratch in a nearly empty repository. The app includes a book listing page with search/filter, book detail pages, a shopping cart with quantity management, navigation header with cart badge, and comprehensive unit tests. Uses standalone components, Angular Router, RxJS-based services, and modern CSS styling.",
+  "status": "in_progress",
+  "feature_order": ["FEAT-001", "FEAT-002"],
+  "blocked_reason": null
+}
