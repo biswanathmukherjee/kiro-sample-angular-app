@@ -2,7 +2,7 @@
   "id": "FEAT-001",
   "type": "chore",
   "description": "Replace Angular project scaffolding with React 19 + Vite + TypeScript project setup. Remove all Angular-specific config and dependencies, set up Vite build tooling, Vitest test runner with React Testing Library, and React Router v7. Preserve the public/favicon.ico and global styles.",
-  "status": "in_progress",
+  "status": "completed",
   "steps": [
     "Remove Angular-specific config files: angular.json, karma.conf.js, tsconfig.app.json, tsconfig.spec.json. Keep tsconfig.json but rewrite it for React/Vite.",
     "Remove all Angular and Karma/Jasmine dependencies from package.json. Add React 19.x dependencies: react, react-dom, react-router-dom (v7). Add dev dependencies: @vitejs/plugin-react, vite, typescript, vitest, @testing-library/react, @testing-library/jest-dom, @testing-library/user-event, jsdom, @types/react, @types/react-dom.",
@@ -35,5 +35,5 @@
     "Run npm test and confirm Vitest runs without configuration errors"
   ],
   "blocked_reason": null,
-  "findings": ""
+  "findings": "tsconfig.json needed 'exclude: [src/app]' to prevent TypeScript from compiling old Angular files in src/app/ (kept for FEAT-002). Vitest config needed 'exclude: [src/app/**, node_modules/**]' to skip old Angular spec files, and 'passWithNoTests: true' since no React tests exist yet. Both npm run build and npm test exit with code 0."
 }

@@ -2,7 +2,7 @@
   "id": "FEAT-002",
   "type": "feat",
   "description": "Convert all Angular models, services, components, and routing to React equivalents. This is the core migration: preserve all TypeScript interfaces, convert Angular services (BookService, CartService, OrderService) to React Context providers with hooks, convert all 6 Angular components to React functional components, and set up React Router routes matching the original Angular routes.",
-  "status": "pending",
+  "status": "in_progress",
   "steps": [
     "Preserve model files as-is (they are plain TypeScript interfaces with no Angular dependency): src/app/models/book.model.ts, src/app/models/cart-item.model.ts, src/app/models/order.model.ts. Move them to src/models/ (remove app/ nesting).",
     "Convert BookService (src/app/services/book.service.ts) to a plain TypeScript module src/services/bookService.ts. Remove @Injectable and Observable wrappers. Export the hardcoded books array and plain functions: getBooks(), getBookById(id), getBooksByCategory(category), searchBooks(query), getCategories(). These return plain data (not Observables).",
