@@ -1,0 +1,39 @@
+{
+  "id": "FEAT-001",
+  "type": "chore",
+  "description": "Replace Angular project scaffolding with React 19 + Vite + TypeScript project setup. Remove all Angular-specific config and dependencies, set up Vite build tooling, Vitest test runner with React Testing Library, and React Router v7. Preserve the public/favicon.ico and global styles.",
+  "status": "in_progress",
+  "steps": [
+    "Remove Angular-specific config files: angular.json, karma.conf.js, tsconfig.app.json, tsconfig.spec.json. Keep tsconfig.json but rewrite it for React/Vite.",
+    "Remove all Angular and Karma/Jasmine dependencies from package.json. Add React 19.x dependencies: react, react-dom, react-router-dom (v7). Add dev dependencies: @vitejs/plugin-react, vite, typescript, vitest, @testing-library/react, @testing-library/jest-dom, @testing-library/user-event, jsdom, @types/react, @types/react-dom.",
+    "Create vite.config.ts with React plugin configuration.",
+    "Rewrite tsconfig.json for React+Vite (jsx: react-jsx, moduleResolution: bundler, target ES2022). Create tsconfig.node.json for Vite config.",
+    "Replace src/index.html: move to project root as index.html (Vite convention), update to include <div id='root'></div> and <script type='module' src='/src/main.tsx'></script>.",
+    "Create src/main.tsx as React entry point that renders <App /> into #root with BrowserRouter.",
+    "Create a minimal src/App.tsx placeholder that renders a <div>App</div> for now.",
+    "Create a vitest setup file (src/setupTests.ts) that imports @testing-library/jest-dom.",
+    "Update package.json scripts: dev -> vite, build -> tsc -b && vite build, preview -> vite preview, test -> vitest run.",
+    "Remove the old src/main.ts, src/app/app.config.ts Angular entry points.",
+    "Preserve src/styles.css (global styles) and import it in src/main.tsx.",
+    "Preserve public/favicon.ico.",
+    "Run npm install to install all new dependencies.",
+    "Run npm run build to verify the Vite build works with the minimal App placeholder.",
+    "Run npm test to verify Vitest runs (no tests yet, should exit cleanly)."
+  ],
+  "acceptance_criteria": [
+    "All Angular-specific files (angular.json, karma.conf.js, tsconfig.app.json, tsconfig.spec.json) are removed",
+    "No Angular or Karma/Jasmine dependencies remain in package.json",
+    "React 19.x, react-dom, react-router-dom v7 are in dependencies",
+    "Vite, Vitest, @testing-library/react, @testing-library/jest-dom are in devDependencies",
+    "npm run build succeeds without errors",
+    "npm test runs Vitest without configuration errors",
+    "src/styles.css global styles are preserved and imported",
+    "public/favicon.ico is preserved"
+  ],
+  "verification": [
+    "Run npm run build and confirm exit code 0",
+    "Run npm test and confirm Vitest runs without configuration errors"
+  ],
+  "blocked_reason": null,
+  "findings": ""
+}
